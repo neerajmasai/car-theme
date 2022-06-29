@@ -14,8 +14,12 @@ get_header();
     <h1 class="site-title">Cars</h1>
     <?php
 
+    // TODO:
+    // Research WP Query for Optimization, it can have more parameters.
+    // Implement Pagination
+    
     $cars = new WP_Query(array(
-        'posts_per_page' => 3,
+        'posts_per_page' => 3, 
         'post_type' => 'car'
     ));
 

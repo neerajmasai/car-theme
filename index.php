@@ -15,11 +15,17 @@ get_header();
     <?php
 
     $cars = new WP_Query(array(
-        'posts_per_page' => 3,
-        'post_type' => 'car'
+        // 'posts_per_page' => 3,
+        'post_type' => 'car',
+        //optimization arguments
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
     ));
 
-    while ($cars->have_posts()) {
+    if($cars->have_posts()){
+    
+        while ($cars->have_posts()) {
 
         $cars->the_post();
 
@@ -27,7 +33,15 @@ get_header();
     ?>
         <a href="<?php the_permalink() ?>"><?php get_template_part("template-parts/content/content", '', [ 'container_classes' => 'content-all' ]); ?></a>
 
-    <?php } ?>
+    <?php }}  ?>
+
+    <?php 
+
+        //reset query
+        wp_reset_query();
+
+    ?>
+
 </div>
 
 <?php get_footer(); ?>

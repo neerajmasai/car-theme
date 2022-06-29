@@ -69,4 +69,4 @@ function register_styles()
     wp_enqueue_style('main-css');
 }
 
-register_styles();
+add_action("wp_enqueue_scripts", 'register_styles');
